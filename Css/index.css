@@ -1,191 +1,254 @@
 html,
 body {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
+/* BODY APENAS FUNDO */
 body {
-    display: flex;
-    margin: auto;
-    background-image: url(https://assets.codepen.io/4927073/Group2.png), url(https://assets.codepen.io/4927073/Background6.png);
-    background-image: url(https://assets.codepen.io/4927073/Group2.png), linear-gradient(33deg, #edf2f7, #edf2f7);
-    background-image: url(https://assets.codepen.io/4927073/Group2.png), linear-gradient(33deg, #2c303a, #2c303a);
-    background-size: cover;
-    background-position: 50% 50%;
+  margin: 0;
+  background-image:
+    url(https://assets.codepen.io/4927073/Group2.png),
+    linear-gradient(33deg, #2c303a, #2c303a);
+  background-size: cover;
+  background-position: center;
 }
 
+/* =========================
+   ENVELOPE (DECORATIVO)
+========================= */
 .envelope {
-    content: url(https://assets.codepen.io/4927073/Envelope3.png);
-    width: 430px;
-    position: absolute;
-    left: 18%;
-    top: 3%;
-    filter: drop-shadow(1.5px 0.75px 1.75px #4d4d4d);
+  content: url(https://assets.codepen.io/4927073/Envelope3.png);
+  width: 430px;
+  position: absolute;
+  left: 18%;
+  top: 3%;
+  filter: drop-shadow(1.5px 0.75px 1.75px #4d4d4d);
+  pointer-events: none;
 }
 
+/* =========================
+   WRAPPER CENTRAL (ÚNICO CENTRO)
+========================= */
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* CENTRO VERTICAL */
+  align-items: center;       /* CENTRO HORIZONTAL */
+}
+
+/* =========================
+   TEXTO DE INSTRUÇÃO
+========================= */
+.hint {
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.hint span {
+  display: none;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff6ec7;
+  text-shadow: 
+    0 0 10px #ff6ec7,
+    0 0 20px #ff6ec7,
+    0 0 30px #ff1493,
+    0 0 40px #ff1493,
+    0 0 50px #ff1493;
+  animation: neonGlow 1.5s ease-in-out infinite;
+}
+
+/* Animação individual de cada letra */
+.hint span::first-letter {
+  animation: neonBlink 2s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+@media (min-width: 769px) {
+  .hint .hint-desktop {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .hint .hint-mobile {
+    display: inline-block;
+    font-size: 18px;
+  }
+}
+
+/* Efeito neon pulsante */
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px #ff6ec7,
+      0 0 20px #ff6ec7,
+      0 0 30px #ff1493,
+      0 0 40px #ff1493;
+  }
+  50% {
+    text-shadow: 
+      0 0 20px #ff6ec7,
+      0 0 30px #ff6ec7,
+      0 0 40px #ff1493,
+      0 0 50px #ff1493,
+      0 0 60px #ff1493;
+  }
+}
+
+/* Piscar individual */
+@keyframes neonBlink {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.5; }
+  50% { opacity: 1; }
+  75% { opacity: 0.7; }
+}
+
+.hint.hide {
+  opacity: 0;
+}
+
+/* =========================
+   CARTA
+========================= */
 .card {
-    position: relative;
-    width: 262px;
-    height: 372px;
-    margin: auto;
-    box-shadow: inset 5px 0px 15px 0px rgba(0, 0, 0, 0.1),
-        3px 0px 3px -2px rgba(0, 0, 0, 0.3);
-    background-color: #fffffa;
+  position: relative;
+  width: 262px;
+  height: 372px;
+  background-color: #fffffa;
+  box-shadow:
+    inset 5px 0px 15px rgba(0, 0, 0, 0.1),
+    3px 0px 3px -2px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  opacity: 0;
+  animation: cardFadeIn 0.8s ease forwards;
+}
+
+/* FADE IN */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
     transform: scale(1.05);
-    left: 12px;
+  }
+}
+
+/* =========================
+   FRONT / BACK
+========================= */
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e0e0db;
+  transform-origin: 0% 50%;
+  transition: all 1s ease-in-out;
 }
 
 .front {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: -10px 0px 0px -10px;
-    margin: auto;
-    border: 1px solid #e0e0db;
-    backface-visibility: hidden;
-    background-color: #e8e6e3;
-    background-size: contain;
-    transform-style: preserve-3d;
-    transform-origin: 0% 50%;
-    transform: perspective(800px) rotateY(0deg);
-    transition: all 1s ease-in-out;
-    filter: saturate(1.125) brightness(1.0125);
+  background-color: #e8e6e3;
+  backface-visibility: hidden;
+  transform: perspective(800px) rotateY(0deg);
 }
 
 .card:hover .front {
-    transform: perspective(800px) rotateY(-170deg);
-    background-color: rgb(205, 205, 205);
-}
-
-.card:hover .back {
-    transform: perspective(800px) rotateY(-170deg);
-    box-shadow: 7px 0px 2px 0px rgba(0, 0, 0, 0.3),
-        inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
-    background-color: #fffffa;
+  transform: perspective(800px) rotateY(-170deg);
 }
 
 .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: -10px 0px 0px -10px;
-    margin: auto;
-    backface-visibility: visible;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
-    box-shadow: inset 5px 0px 15px 0px rgba(0, 0, 0, 0.1),
-        3px 0px 3px 1px rgba(0, 0, 0, 0.3);
-    transform-style: preserve-3d;
-    transform-origin: 0% 50%;
-    transform: perspective(800px) rotateY(0deg);
-    transition: all 1s ease-in-out;
-    background-color: #fff;
+  background-color: #fff;
+  transform: perspective(800px) rotateY(0deg);
 }
 
-.text-container {
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Roboto;
-    color: #929292;
+.card:hover .back {
+  transform: perspective(800px) rotateY(-170deg);
 }
 
+/* =========================
+   IMAGEM DA FRENTE
+========================= */
 .f-box {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    background-color: transparent;
-    box-shadow: 0 2px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .f-box img {
-    margin-top: 0px;
-    height: 100%;
-    width: auto;
+  height: 100%;
+  width: auto;
 }
 
-
-
-
-@media (max-width: 675px) {
-    .envelope {
-        width: 380px;
-    }
-
-    .card {
-        height: 330px;
-        width: 230px;
-    }
-}
-
+/* =========================
+   CONTEÚDO INTERNO
+========================= */
 .text-container {
-    width: 80%;
-    height: auto;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    /* Organiza os elementos em coluna */
-    justify-content: center;
-    align-items: center;
-    font-family: Roboto;
-    color: #929292;
-    text-align: center;
-    /* Mantém o texto centralizado */
+  width: 85%;
+  height: 100%;
+  margin: auto;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  color: #8a8a8a;
 }
 
+.letter-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =========================
+   CONTADOR
+========================= */
+.countdown {
+  margin-top: -6px;
+  font-size: 13px;
+  color: #7a7a7a;
+}
+
+#timer {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+#timer span {
+  background: #f3f3f3;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   IMAGEM FINAL
+========================= */
 .img-container {
-    margin-top: 5px;
-    /* Espaço entre o texto e a imagem */
+  margin-top: auto;
+  padding-bottom: 6px;
 }
 
 .carta-img {
-    width: 115px;
-    /* Define um tamanho pequeno */
-    height: auto;
-    /* Mantém a proporção */
-    border-radius: 8px;
-    /* Bordas arredondadas */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    /* Leve sombra */
-}
-
-/* 📱 Responsividade */
-@media (max-width: 768px) {
-    .envelope {
-        max-width: 300px;
-    }
-
-    .card {
-        max-width: 230px;
-    }
-
-    .text-container {
-        font-size: 14px;
-    }
-
-    .carta-img {
-        width: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    .envelope {
-        max-width: 250px;
-    }
-
-    .card {
-        max-width: 200px;
-    }
-
-    .text-container {
-        font-size: 12px;
-    }
-
-    .carta-img {
-        width: 70px;
-    }
+  width: 90px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }

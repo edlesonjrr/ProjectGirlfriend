@@ -1,37 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para você, amor</title>
-    <link rel="stylesheet" href="./Css/index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para você, amor</title>
+
+  <!-- CSS base / desktop -->
+  <link rel="stylesheet" href="./Css/index.css" />
+
+  <!-- CSS exclusivo mobile -->
+  <link rel="stylesheet" href="./Css/mobile.css" />
+
+  <!-- CSS de efeitos especiais (cursor neon + partículas) -->
+  <link rel="stylesheet" href="./Css/effects.css" />
+
+  <!-- CSS de efeitos mobile (shake + pétalas + vibração) -->
+  <link rel="stylesheet" href="./Css/effects-mobile.css" />
 </head>
 
 <body>
-    <div class="envelope"></div>
+  <div class="envelope"></div>
 
-    <div class="card">
-        <div class="back"></div>
-        <div class="front">
-            <div class="f-box">
-                <img src="https://assets.codepen.io/4927073/ValCard.png" alt="Carta">
-            </div>
-        </div>
+  <!-- Wrapper central (NECESSÁRIO) -->
+  <div class="card-wrapper">
 
-        <div class="text-container">
-            <p>
-                Oi amor, tudo bem? Eu queria te dizer que eu te amo muito e queria agradecer por ser uma pessoa tão
-                especial para mim. Você é uma namorada incrível e perfeita, e eu sou muito grato a Deus por Ele ter colocado você na minha vida!
-                <br><strong>Junior te ama 💖</strong>
-            </p>
-
-            <!-- Imagem dentro de um novo div para garantir que fique abaixo -->
-            <div class="img-container">
-                <img src="./image/eueela.jpg" alt="Nós dois" class="carta-img">
-            </div>
-        </div>
+    <!-- Texto de instrução -->
+    <div class="hint" id="hint">
+      <span class="hint-desktop">Passe o mouse em cima da carta</span>
+      <span class="hint-mobile">Clique na carta</span>
     </div>
-</body>
 
+    <!-- Carta -->
+    <div class="card" id="card">
+      <div class="back"></div>
+
+      <div class="front">
+        <div class="f-box">
+          <img
+            src="https://assets.codepen.io/4927073/ValCard.png"
+            alt="Carta"
+          />
+        </div>
+      </div>
+
+      <!-- Conteúdo interno -->
+      <div class="text-container">
+        <p class="letter-text">
+          Oi bia, não vejo a hora de te ver, e a gente poder ser finalmente feliz,
+          você é uma mulher incrível, linda e maravilhosa e eu tenho muita sorte!
+          <br />
+          <strong>Saudades 💖</strong>
+        </p>
+
+        <!-- Contagem regressiva -->
+        <div class="countdown">
+          <p class="countdown-title">Falta pouco...</p>
+
+          <div id="timer">
+            <span><strong id="days">0</strong> dias</span>
+            <span><strong id="hours">0</strong>h</span>
+            <span><strong id="minutes">0</strong>m</span>
+            <span><strong id="seconds">0</strong>s</span>
+          </div>
+
+          <p class="countdown-msg">para o nosso dia 💕</p>
+        </div>
+
+        <!-- Imagem -->
+        <div class="img-container">
+          <img
+            src="./image/biaeeddy.jpg"
+            alt="Nós dois"
+            class="carta-img"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Efeito de piscar letra por letra
+    function animateText() {
+      const hintDesktop = document.querySelector('.hint-desktop');
+      const hintMobile = document.querySelector('.hint-mobile');
+      
+      function wrapLetters(element) {
+        if (!element) return;
+        const text = element.textContent;
+        element.innerHTML = '';
+        
+        text.split('').forEach((char, index) => {
+          const span = document.createElement('span');
+          span.textContent = char;
+          span.style.display = 'inline-block';
+          // Preserva espaços
+          if (char === ' ') {
+            span.style.width = '0.3em';
+          }
+          span.style.animation = `letterGlow 2s ease-in-out infinite`;
+          span.style.animationDelay = `${index * 0.1}s`;
+          element.appendChild(span);
+        });
+      }
+      
+      wrapLetters(hintDesktop);
+      wrapLetters(hintMobile);
+    }
+    
+    // Adiciona CSS dinâmico para animação das letras
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes letterGlow {
+        0%, 100% { 
+          opacity: 1;
+          text-shadow: 
+            0 0 10px #ff6ec7,
+            0 0 20px #ff6ec7,
+            0 0 30px #ff1493;
+        }
+        50% { 
+          opacity: 0.4;
+          text-shadow: 
+            0 0 5px #ff6ec7,
+            0 0 10px #ff6ec7;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Executa quando página carregar
+    window.addEventListener('DOMContentLoaded', animateText);
+  </script>
+  <script src="./Js/countdown.js"></script>
+  <script src="./Js/mobile.js"></script>
+  
+  <!-- Efeitos especiais (cursor neon + partículas) -->
+  <script src="./Js/effects.js"></script>
+  
+  <!-- Efeitos mobile (shake + pétalas + vibração) -->
+  <script src="./Js/effects-mobile.js"></script>
+</body>
 </html>

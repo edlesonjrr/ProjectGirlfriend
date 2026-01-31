@@ -1,0 +1,185 @@
+/* =========================
+   EFEITOS ESPECIAIS - MOBILE ONLY
+========================= */
+
+@media (max-width: 768px) {
+  
+  /* =========================
+     SHAKE INDICATOR (INSTRUÇÃO)
+  ========================= */
+  .shake-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 110, 199, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 9999;
+    box-shadow: 
+      0 4px 15px rgba(255, 110, 199, 0.4),
+      0 0 20px rgba(255, 110, 199, 0.3);
+    animation: shakeHintPulse 2s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .shake-hint.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .shake-hint::before {
+    content: '📱';
+    margin-right: 8px;
+    font-size: 18px;
+    animation: phoneShake 1s ease-in-out infinite;
+  }
+
+  @keyframes shakeHintPulse {
+    0%, 100% {
+      transform: translateX(-50%) scale(1);
+      box-shadow: 
+        0 4px 15px rgba(255, 110, 199, 0.4),
+        0 0 20px rgba(255, 110, 199, 0.3);
+    }
+    50% {
+      transform: translateX(-50%) scale(1.05);
+      box-shadow: 
+        0 6px 20px rgba(255, 110, 199, 0.6),
+        0 0 30px rgba(255, 110, 199, 0.5);
+    }
+  }
+
+  @keyframes phoneShake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+
+  /* =========================
+     CORAÇÕES EXPLOSÃO (SHAKE)
+  ========================= */
+  .explosion-heart {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9998;
+    animation: explodeHeart 1.5s ease-out forwards;
+    filter: drop-shadow(0 0 8px #ff6ec7);
+  }
+
+  @keyframes explodeHeart {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) scale(0.5) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--x), var(--y)) scale(1.5) rotate(360deg);
+    }
+  }
+
+  /* =========================
+     PÉTALAS AO ABRIR CARTA
+  ========================= */
+  .petal {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    animation: petalFall linear forwards;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  @keyframes petalFall {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(720deg);
+    }
+  }
+
+  /* =========================
+     BRILHOS AO TOCAR
+  ========================= */
+  .sparkle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #fff, #ff6ec7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9996;
+    animation: sparkleFade 0.8s ease-out forwards;
+    box-shadow: 0 0 10px #ff6ec7;
+  }
+
+  @keyframes sparkleFade {
+    0% {
+      opacity: 1;
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.3) translate(var(--sparkle-x), var(--sparkle-y));
+    }
+  }
+
+  /* =========================
+     ANIMAÇÃO DE SUCESSO SHAKE
+  ========================= */
+  .shake-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 110, 199, 0.95);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    z-index: 10000;
+    box-shadow: 
+      0 10px 40px rgba(255, 110, 199, 0.6),
+      0 0 60px rgba(255, 110, 199, 0.4);
+    animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+  }
+
+  @keyframes successPop {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  /* =========================
+     EFEITO SHAKE NA CARTA
+  ========================= */
+  .card.shaking {
+    animation: cardShake 0.5s ease-in-out;
+  }
+
+  @keyframes cardShake {
+    0%, 100% { transform: translateY(6px) scale(1.05) rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: translateY(6px) scale(1.05) rotate(-2deg); }
+    20%, 40%, 60%, 80% { transform: translateY(6px) scale(1.05) rotate(2deg); }
+  }
+}
