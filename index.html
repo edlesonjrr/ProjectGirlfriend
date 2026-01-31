@@ -1,116 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para você, amor</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para você, amor</title>
 
-  <!-- CSS base / desktop -->
-  <link rel="stylesheet" href="./Css/index.css" />
+    <!-- Favicon (ícone do site) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>"
+    />
 
-  <!-- CSS exclusivo mobile -->
-  <link rel="stylesheet" href="./Css/mobile.css" />
+    <!-- CSS base / desktop -->
+    <link rel="stylesheet" href="./Css/index.css" />
 
-  <!-- CSS de efeitos especiais (cursor neon + partículas) -->
-  <link rel="stylesheet" href="./Css/effects.css" />
+    <!-- CSS exclusivo mobile -->
+    <link rel="stylesheet" href="./Css/mobile.css" />
 
-  <!-- CSS de efeitos mobile (shake + pétalas + vibração) -->
-  <link rel="stylesheet" href="./Css/effects-mobile.css" />
-</head>
+    <!-- CSS de efeitos especiais (cursor neon + partículas) -->
+    <link rel="stylesheet" href="./Css/effects.css" />
 
-<body>
-  <div class="envelope"></div>
+    <!-- CSS de efeitos mobile (shake + pétalas + vibração) -->
+    <link rel="stylesheet" href="./Css/effects-mobile.css" />
+  </head>
 
-  <!-- Wrapper central (NECESSÁRIO) -->
-  <div class="card-wrapper">
+  <body>
+    <div class="envelope"></div>
 
-    <!-- Texto de instrução -->
-    <div class="hint" id="hint">
-      <span class="hint-desktop">Passe o mouse em cima da carta</span>
-      <span class="hint-mobile">Clique na carta</span>
-    </div>
-
-    <!-- Carta -->
-    <div class="card" id="card">
-      <div class="back"></div>
-
-      <div class="front">
-        <div class="f-box">
-          <img
-            src="https://assets.codepen.io/4927073/ValCard.png"
-            alt="Carta"
-          />
-        </div>
+    <!-- Wrapper central (NECESSÁRIO) -->
+    <div class="card-wrapper">
+      <!-- Texto de instrução -->
+      <div class="hint" id="hint">
+        <span class="hint-desktop">Passe o mouse em cima da carta</span>
+        <span class="hint-mobile">Clique na carta</span>
       </div>
 
-      <!-- Conteúdo interno -->
-      <div class="text-container">
-        <p class="letter-text">
-          Oi bia, não vejo a hora de te ver, e a gente poder ser finalmente feliz,
-          você é uma mulher incrível, linda e maravilhosa e eu tenho muita sorte!
-          <br />
-          <strong>Saudades 💖</strong>
-        </p>
+      <!-- Carta -->
+      <div class="card" id="card">
+        <div class="back"></div>
 
-        <!-- Contagem regressiva -->
-        <div class="countdown">
-          <p class="countdown-title">Falta pouco...</p>
+        <div class="front">
+          <div class="f-box">
+            <img
+              src="https://assets.codepen.io/4927073/ValCard.png"
+              alt="Carta"
+            />
+          </div>
+        </div>
 
-          <div id="timer">
-            <span><strong id="days">0</strong> dias</span>
-            <span><strong id="hours">0</strong>h</span>
-            <span><strong id="minutes">0</strong>m</span>
-            <span><strong id="seconds">0</strong>s</span>
+        <!-- Conteúdo interno -->
+        <div class="text-container">
+          <p class="letter-text">
+            Oi bia, não vejo a hora de te ver, e a gente poder ser finalmente
+            feliz, você é uma mulher incrível, linda e maravilhosa e eu tenho
+            muita sorte!
+            <br />
+            <strong>Saudades 💖</strong>
+          </p>
+
+          <!-- Contagem regressiva -->
+          <div class="countdown">
+            <p class="countdown-title">Falta pouco...</p>
+
+            <div id="timer">
+              <span><strong id="days">0</strong> dias</span>
+              <span><strong id="hours">0</strong>h</span>
+              <span><strong id="minutes">0</strong>m</span>
+              <span><strong id="seconds">0</strong>s</span>
+            </div>
+
+            <p class="countdown-msg">para o nosso dia 💕</p>
           </div>
 
-          <p class="countdown-msg">para o nosso dia 💕</p>
-        </div>
-
-        <!-- Imagem -->
-        <div class="img-container">
-          <img
-            src="./image/biaeeddy.jpg"
-            alt="Nós dois"
-            class="carta-img"
-          />
+          <!-- Imagem -->
+          <div class="img-container">
+            <img src="./image/biaeeddy.jpg" alt="Nós dois" class="carta-img" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script>
-    // Efeito de piscar letra por letra
-    function animateText() {
-      const hintDesktop = document.querySelector('.hint-desktop');
-      const hintMobile = document.querySelector('.hint-mobile');
-      
-      function wrapLetters(element) {
-        if (!element) return;
-        const text = element.textContent;
-        element.innerHTML = '';
-        
-        text.split('').forEach((char, index) => {
-          const span = document.createElement('span');
-          span.textContent = char;
-          span.style.display = 'inline-block';
-          // Preserva espaços
-          if (char === ' ') {
-            span.style.width = '0.3em';
-          }
-          span.style.animation = `letterGlow 2s ease-in-out infinite`;
-          span.style.animationDelay = `${index * 0.1}s`;
-          element.appendChild(span);
-        });
+    <!-- Scripts -->
+    <script>
+      // Efeito de piscar letra por letra
+      function animateText() {
+        const hintDesktop = document.querySelector(".hint-desktop");
+        const hintMobile = document.querySelector(".hint-mobile");
+
+        function wrapLetters(element) {
+          if (!element) return;
+          const text = element.textContent;
+          element.innerHTML = "";
+
+          text.split("").forEach((char, index) => {
+            const span = document.createElement("span");
+            span.textContent = char;
+            span.style.display = "inline-block";
+            // Preserva espaços
+            if (char === " ") {
+              span.style.width = "0.3em";
+            }
+            span.style.animation = `letterGlow 2s ease-in-out infinite`;
+            span.style.animationDelay = `${index * 0.1}s`;
+            element.appendChild(span);
+          });
+        }
+
+        wrapLetters(hintDesktop);
+        wrapLetters(hintMobile);
       }
-      
-      wrapLetters(hintDesktop);
-      wrapLetters(hintMobile);
-    }
-    
-    // Adiciona CSS dinâmico para animação das letras
-    const style = document.createElement('style');
-    style.textContent = `
+
+      // Adiciona CSS dinâmico para animação das letras
+      const style = document.createElement("style");
+      style.textContent = `
       @keyframes letterGlow {
         0%, 100% { 
           opacity: 1;
@@ -127,18 +129,18 @@
         }
       }
     `;
-    document.head.appendChild(style);
-    
-    // Executa quando página carregar
-    window.addEventListener('DOMContentLoaded', animateText);
-  </script>
-  <script src="./Js/countdown.js"></script>
-  <script src="./Js/mobile.js"></script>
-  
-  <!-- Efeitos especiais (cursor neon + partículas) -->
-  <script src="./Js/effects.js"></script>
-  
-  <!-- Efeitos mobile (shake + pétalas + vibração) -->
-  <script src="./Js/effects-mobile.js"></script>
-</body>
+      document.head.appendChild(style);
+
+      // Executa quando página carregar
+      window.addEventListener("DOMContentLoaded", animateText);
+    </script>
+    <script src="./Js/countdown.js"></script>
+    <script src="./Js/mobile.js"></script>
+
+    <!-- Efeitos especiais (cursor neon + partículas) -->
+    <script src="./Js/effects.js"></script>
+
+    <!-- Efeitos mobile (shake + pétalas + vibração) -->
+    <script src="./Js/effects-mobile.js"></script>
+  </body>
 </html>
