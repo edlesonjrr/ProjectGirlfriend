@@ -1,48 +1,97 @@
-# 💌 Carta Responsiva para Namorada
+# 💖 Carta Interativa
 
-## 📌 Sobre o Projeto
-Este projeto foi criado para expressar carinho e amor de uma forma criativa através de uma **carta digital interativa**. A carta está dentro de um envelope e, ao passar o mouse, ela se abre revelando uma linda mensagem e uma foto especial do casal. 💖
+Uma carta digital interativa e romântica com efeitos especiais responsivos para desktop e mobile.
 
-## 🛠️ Tecnologias Utilizadas
-- **HTML5** → Estruturação da página.
-- **CSS3** → Estilização e animações para a interação da carta.
-- **Responsividade** → Uso de `@media queries` para garantir um layout bonito em qualquer dispositivo.
+## 📸 Preview
 
-## 🎨 Funcionalidades
-✅ **Envelope interativo**: O envelope abre ao passar o mouse sobre ele.  
-✅ **Carta animada**: Efeito de flip na carta ao abrir.  
-✅ **Mensagem personalizável**: Texto romântico dentro da carta.  
-✅ **Imagem especial**: Uma foto do casal é exibida abaixo da mensagem.  
-✅ **Design Responsivo**: Adaptado para celulares e desktops.
+### Desktop
+- Cursor neon personalizado com trail
+- Partículas de coração flutuantes
+- Animação 3D ao passar o mouse
 
-## 📂 Estrutura de Arquivos
+### Mobile
+- Shake to reveal (balançar para revelar)
+- Vibração haptic feedback
+- Pétalas caindo ao abrir a carta
+- Brilhos ao tocar na tela
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **HTML5** - Estrutura semântica
+- **CSS3** - Animações e efeitos visuais
+- **JavaScript (Vanilla)** - Interatividade e lógica
+- **Device Motion API** - Detecção de movimento (shake)
+- **Vibration API** - Feedback tátil
+
+**Sem dependências externas!** ✨
+
+---
+
+## 📁 Estrutura de Pastas
+
 ```
-📂 projeto-carta
-├── 📂 Css
-│   ├── index.css  # Estilos principais
-├── 📂 image
-│   ├── eueela.jpg  # Foto do casal
-├── index.html  # Página principal
-└── README.md  # Documentação
+projeto-carta/
+│
+├── index.html                 # Página principal
+│
+├── Css/
+│   ├── index.css              # Estilos base e desktop
+│   ├── mobile.css             # Estilos mobile responsivos
+│   ├── effects.css            # Efeitos desktop (cursor neon)
+│   └── effects-mobile.css     # Efeitos mobile (shake, pétalas)
+│
+├── Js/
+│   ├── countdown.js           # Lógica do contador regressivo
+│   ├── mobile.js              # Interações mobile (toque, vibração)
+│   ├── effects.js             # Efeitos desktop (cursor, partículas)
+│   └── effects-mobile.js      # Efeitos mobile (shake, pétalas)
+│
+├── image/
+│   └── biaeeddy.jpg           # Imagem do casal (personalizável)
+│
+└── README.md                  # Documentação
 ```
 
-## 🚀 Como Executar o Projeto
-1. **Baixe o repositório** ou clone com o comando:
+---
+
+## ⚙️ Instalação
+
+### Pré-requisitos
+
+- Navegador moderno (Chrome, Firefox, Safari, Edge)
+- Servidor local (opcional, mas recomendado)
+
+### Passo a Passo
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/seu-usuario/carta-interativa.git
+cd carta-interativa
+```
+
+2. **Configure as pastas**
+   - Certifique-se de que as pastas `Css/`, `Js/` e `image/` existam
+   - Coloque sua imagem em `image/biaeeddy.jpg`
+
+3. **Abra o projeto**
+
+   **Opção 1: Servidor Local (Recomendado)**
    ```bash
-   git clone https://github.com/seu-usuario/projeto-carta.git
+   # Com Python 3
+   python -m http.server 8000
+   
+   # Com Node.js (http-server)
+   npx http-server
+   
+   # Com PHP
+   php -S localhost:8000
    ```
-2. **Abra o arquivo `index.html`** no seu navegador.
-3. **Pronto!** Sua carta estará funcionando. 💌
+   Acesse: `http://localhost:8000`
 
-## 📱 Visualização em Dispositivos Móveis
-- O layout foi ajustado para diferentes tamanhos de tela.
-- Imagens e textos são redimensionados para melhor leitura.
+   **Opção 2: Abrir Direto**
+   - Clique duas vezes em `index.html`
+   - ⚠️ Alguns efeitos podem não funcionar sem servidor
 
-## 📝 Personalização
-Caso queira alterar a mensagem ou a imagem:
-- **Texto**: Edite o conteúdo do `<p>` dentro da `text-container` no `index.html`.
-- **Imagem**: Substitua o arquivo `eueela.jpg` na pasta `image`.
-
-## 📜 Licença
-Este projeto é de uso pessoal, mas fique à vontade para modificá-lo e usá-lo para surpreender alguém especial. 💖
-
+---
